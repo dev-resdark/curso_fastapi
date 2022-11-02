@@ -54,7 +54,7 @@ def show_person(
 ):
     return{name: age}
 
-# Validaciones: Path Parameters
+# Validaciones: Path Parameters.
 
 @app.get("/person/detail/{person_id}")
 def show_person(
