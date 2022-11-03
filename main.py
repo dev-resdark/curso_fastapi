@@ -26,9 +26,24 @@ class HairColor(Enum):
     blonde = "blonde"
 
 class Location(BaseModel):
-    city: str
-    state: str
-    country: str
+    city: str = Field(
+        ...,
+        min_length=6,
+        max_length=75,
+        ge=0
+        )
+    state: str=Field(
+        ...,
+        min_length=6,
+        max_length=75,
+        ge=0
+        )
+    country: str = Field(
+        ...,
+        min_length=6,
+        max_length=75,
+        ge=0
+        )
 
 
 class Person(BaseModel):
