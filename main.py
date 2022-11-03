@@ -1,9 +1,11 @@
 # python
 from typing import Optional
+from enum import Enum
 
 # pydantic es una libreria de la cual llamamos a la clase BaseModel con 
 # la cual podemos crear los modelos
 from pydantic import BaseModel
+from pydantic import Field
 
 
 #fastapi
@@ -15,6 +17,14 @@ app = FastAPI()
 
 #Models
 
+class HairColor(Enum):
+    black = "black"
+    white = "white"
+    brown = "brown"
+    red = "red"
+    purple = "purple"
+    blonde = "blonde"
+
 class Location(BaseModel):
     city: str
     state: str
@@ -22,11 +32,24 @@ class Location(BaseModel):
 
 
 class Person(BaseModel):
-    first_name: str
-    last_name: str
-    age: int
-    hair_color:Optional[str] = None
-    is_married:Optional[bool] = None
+    first_name: str = Field(
+        ...,
+        min_length=1,
+        max_length=50
+        )
+    last_name: str = Field(
+        ..., 
+        min_length=1, 
+        max_length=50
+        )
+
+    age: int = Field(
+        ...,
+        gt=0,
+        le=80
+        )
+    hair_color:Optional[str] = Field(default=None) 
+    is_married:Optional[bool] = Field(default=None)
 
 @app.get("/") #esto es un decodorador de la funcion que vamos a crear
 
