@@ -65,6 +65,9 @@ class Person(BaseModel):
         )
     hair_color:Optional[str] = Field(default=None) 
     is_married:Optional[bool] = Field(default=None)
+    
+    
+
 
 @app.get("/") #esto es un decodorador de la funcion que vamos a crear
 
